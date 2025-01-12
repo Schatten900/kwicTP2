@@ -1,6 +1,10 @@
 -module(stopword).
--export([main/1]).
--import(lists,[sort/1]).
+-export([main/3]).
+-export([createCircularDisplacement/2]).
+-export([concurrencyWords/2]).
+-export([collectResults/2]).
+-export([addToTheList/2]).
+-import(lists,[sort/1, sort/2]).
 
 createCircularDisplacement(Line, MainWord) ->
     Words = string:tokens(Line, " \t\n"),     
@@ -58,29 +62,49 @@ collectResults(N,Ans) ->
 
 addToTheList([], Ans) -> Ans;
 addToTheList([Hd | Tl], Ans) ->
-    addToTheList(Tl, Hd ++ Ans). 
+   addToTheList(Tl, Hd ++ Ans). 
 
 
-main(FileName)->
-    %make the stopwords be dinamic as parameter for main function
-    StopWords = ["a","the","and","of","an","to","in","on","is","are","they","he","she"],
+main(FileName, Case, StopWords) ->
+    % Lista de exemplo
     case file:read_file(FileName) of
-        {ok,Content} ->
-            Lines = string:tokens(binary_to_list(Content),"\n"),
+        {ok, Content} ->
+            %Lines = string:tokens(binary_to_list(Content), "\n"), % Linux
+            Lines = [string:strip(Line, right, $\r) || Line <- string:tokens(binary_to_list(Content), "\n")], % Windows
             ParentPid = self(),
 
-            %to each line call the process
+            % Para cada linha, cria um processo
             lists:foreach(fun(Line) -> createPid(Line, StopWords, ParentPid) end, Lines),
 
-            %Take all messages sent to PidParent
-            GeneralList = collectResults(length(Lines),[]),
+            % Coleta todos os resultados
+            GeneralList = collectResults(length(Lines), []),
 
-            %Sort result
+            % Decide qual sort usar com base no valor de Case
             Ans = addToTheList(GeneralList, []),
-            SortedList = lists:sort(Ans),
-            io:fwrite("Resulted: ~p~n", [SortedList]),
-            ok;
+            SortedList = 
+                if
+                    Case == "sensivel" -> 
+                        sort(Ans);
+                    Case == "insensivel" -> 
+                        sort(fun(A, B) -> string:lowercase(A) =< string:lowercase(B) end, Ans);
+                    true -> 
+                        io:fwrite("Invalid case option~n"),
+                        Ans
+                end,
 
-        {error,Reason} ->
-            io:fwrite("Error occuried: ~n~s", [Reason])
+            % Arquivo de saida
+            case file:open("output.txt", [write]) of
+                {ok, File} ->
+                    lists:foreach(fun(Line) -> file:write(File, Line ++ "\n") end, SortedList),
+                    file:close(File),
+                    io:fwrite("Results written to output.txt~n");
+                {error, Reason} ->
+                    io:fwrite("Failed to open output file: ~p~n", [Reason])
+            end,
+            
+            %io:fwrite("Sorted list: ~p~n", [SortedList]),
+            SortedList;
+
+        {error, Reason} ->
+            io:fwrite("Error occurred: ~s~n", [Reason])
     end.
