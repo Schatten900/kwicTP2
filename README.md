@@ -4,17 +4,17 @@
 
 Este repositório corresponde à Avaliação 01 da disciplina Técnicas de Programação 2 da Universidade de Brasília. O projeto implementa o algoritmo Keyword in Context (KWIC) utilizando o estilo de programação Actors, conforme descrito no livro *Exercises in Programming Style*, da Profa. Crista Lopes. O objetivo é explorar a aplicação de estilos de programação ao resolver um problema clássico de manipulação e ordenação de strings.
 
+Você pode acessar o repositório principal [aqui](https://github.com/Schatten900/kwicTP2).
+
 ## Membros do Grupo
-- 242036844
-- 211042757
-- 231034304
-- 231038798
+- Davi Salomão Soares Corrêa, 24/2036844.
+- João Vitor Dickmann, 21/1042757.
+- Carlos Cauã Rocha da Silva, 23/1034304.
+- Wallysson Matheus de Queiroz Silva, 23/1038798.
    
 ## Estilo e Linguagem de Programação Escolhidos
 - Estilo de Programação: Actors
 - Linguagem de Programação: Erlang
-
-O estilo Actors, baseado em processos independentes e comunicação assíncrona, foi utilizado para implementar o algoritmo KWIC.
 
 ## Arquivos do Projeto
 O projeto está organizado nos seguintes arquivos principais:
@@ -47,7 +47,7 @@ O projeto está organizado nos seguintes arquivos principais:
    eunit:test(stopword_test_int).
 
 ## Videoaula
-Detalhes sobre o estilo de programação Actors e sua aplicação no KWIC está disponível [aqui](link-do-video).
+Detalhes sobre o estilo de programação Actors e sua aplicação no KWIC está disponível [aqui](https://youtu.be/c6xJwIXo2Oc).
 
 
 
