@@ -14,7 +14,7 @@ Este repositório corresponde à Avaliação 01 da disciplina Técnicas de Progr
 - Estilo de Programação: Actors
 - Linguagem de Programação: Erlang
 
-O estilo Actors, baseado em processos independentes e comunicação assíncrona, foi utilizado para implementar o algoritmo KWIC. Detalhes sobre o estilo e sua aplicação no KWIC são discutidos na vídeo aula disponível neste repositório.
+O estilo Actors, baseado em processos independentes e comunicação assíncrona, foi utilizado para implementar o algoritmo KWIC.
 
 ## Arquivos do Projeto
 O projeto está organizado nos seguintes arquivos principais:
@@ -23,17 +23,31 @@ O projeto está organizado nos seguintes arquivos principais:
 - stopword_test_int.erl: Arquivo com os testes de integração do KWIC.
 - README.md: Este arquivo, com as instruções do projeto e links relevantes.
 
-## Como Usar
-1. Inicie o shell do Erlang:
+## Como Fazer o Build e Executar os Testes
+1. Clone o Repositório:
+   ```bash
+   git clone [https://github.com/Schatten900/kwicTP2](https://github.com/Schatten900/kwicTP2)
+2. Inicie o shell do Erlang:
    ```bash
    erl
-2. Compile o código Erlang:
+3. Compile o código Erlang:
    ```erlang
    c(stopword).
-3. Execute o programa com um arquivo de entrada (por exemplo, "word.txt") e parâmetros de configuração, como ordem de classificação e lista de palavras de parada (stop words):
+4. Execute o programa com um arquivo de entrada (por exemplo, "word.txt") e parâmetros de configuração, como ordem de classificação e lista de palavras de parada (stop words):
    ```erlang
    stopword:main("word.txt", "insensivel", ["a", "the", "and", "of", "an", "to", "in", "on", "is", "are", "they", "he", "she"]).
+5. Execute os Testes:
+- Testes Unitários:
+   ```erlang
+   c(stopword_test_unit).
+   eunit:test(stopword_test_unit).
+- Testes de Integração:
+   ```erlang
+   c(stopword_test_int).
+   eunit:test(stopword_test_int).
 
 ## Videoaula
-A videoaula sobre o estilo de programação Actors e sua aplicação no KWIC está disponível [aqui](link-do-video).
+Detalhes sobre o estilo de programação Actors e sua aplicação no KWIC está disponível [aqui](link-do-video).
+
+
 
