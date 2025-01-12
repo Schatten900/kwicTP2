@@ -16,6 +16,8 @@ Você pode acessar o repositório principal [aqui](https://github.com/Schatten90
 - Estilo de Programação: Actors
 - Linguagem de Programação: Erlang
 
+Escolhemos o estilo de programação Actors, baseado em processos independentes e comunicação assíncrona, para implementar o algoritmo KWIC. Esse estilo foi adotado para explorar a abordagem de concorrência e escalabilidade, características essenciais não apenas para a manipulação otimizada das strings no KWIC, mas também para melhorar o desempenho geral em problemas que exigem processamento paralelo e eficiente de dados em larga escala.
+
 ## Arquivos do Projeto
 O projeto está organizado nos seguintes arquivos principais:
 - stopword.erl: Arquivo principal com a implementação do algoritmo KWIC.
@@ -24,9 +26,9 @@ O projeto está organizado nos seguintes arquivos principais:
 - README.md: Este arquivo, com as instruções do projeto e links relevantes.
 
 ## Como Fazer o Build e Executar os Testes
-1. Clone o Repositório:
+1. Clone o repositório:
    ```bash
-   git clone [https://github.com/Schatten900/kwicTP2](https://github.com/Schatten900/kwicTP2)
+   git clone https://github.com/Schatten900/kwicTP2
 2. Inicie o shell do Erlang:
    ```bash
    erl
@@ -36,7 +38,7 @@ O projeto está organizado nos seguintes arquivos principais:
 4. Execute o programa com um arquivo de entrada (por exemplo, "word.txt") e parâmetros de configuração, como ordem de classificação e lista de palavras de parada (stop words):
    ```erlang
    stopword:main("word.txt", "insensivel", ["a", "the", "and", "of", "an", "to", "in", "on", "is", "are", "they", "he", "she"]).
-5. Execute os Testes:
+5. Execute os testes:
 - Testes Unitários:
    ```erlang
    c(stopword_test_unit).
@@ -47,7 +49,7 @@ O projeto está organizado nos seguintes arquivos principais:
    eunit:test(stopword_test_int).
 
 ## Videoaula
-Detalhes sobre o estilo de programação Actors e sua aplicação no KWIC está disponível [aqui](https://youtu.be/c6xJwIXo2Oc).
+Detalhes sobre o estilo de programação Actors e sua aplicação no KWIC estão disponíveis [aqui](https://youtu.be/c6xJwIXo2Oc).
 
 
 
